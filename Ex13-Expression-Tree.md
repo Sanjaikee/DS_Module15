@@ -1,54 +1,54 @@
-# Ex3b Binary Search Tree
+# Ex3c Expression Tree
 ## DATE: 27.04.25
 ## AIM:
-To write a C function to insert the elements in the binary search tree
+To write a C function to construct an Expression Tree for the given Postfix Expression and display the output in the format of In-order ,Pre-order and Post-order traversal.
 
 ## Algorithm
 1. Start
-2. Check if the current node is NULL; if true, create a new node with the given key.
-3. Allocate memory for the new node, set its key, and initialize its left and right children to NULL.
-4. If the current node is not NULL, compare the key with the current node's key.
-5. If key <= node->key, recursively insert the key into the left subtree and update the left child pointer.
-6. If key > node->key, recursively insert the key into the right subtree and update the right child pointer.
-7. Return the current node after the insertion.
-8. End
-
+2. Print node data in preorder then traverse left then right
+3. Traverse left in inorder then print node data then traverse right
+4. Traverse left in postorder then traverse right then print node data
+5. Recursive approach is used for all three traversal methods
+6. Functions handle each tree node using tree->d, tree->l, tree->r
+7. End
+   
 ## Program:
 ```
 /*
-Program to insert the elements in the binary search tree
+Program to construct an Expression Tree for the given Postfix Expression and display the output in the format of In-order ,Pre-order and Post-order traversal.
 Developed by: SANJAI S
 RegisterNumber: 212223230186
 */
-/*structnode{ int key;
-struct node*left, *right;
+/*
+struct n { char d; struct n*l; struct n*r;
 };*/
-struct node* insert(struct node* node, int key)
+voidpreOrder(struct n*tree)
 {
-if(node==NULL)
+if(tree)
 {
-struct node* node=(struct node*)malloc(sizeof(struct node)); node->key=key;
-node->left=NULL; node->right=NULL; returnnode;
+printf("%c",tree->d); preOrder(tree->l); preOrder(tree->r);
 }
-else
-{
-struct node* cur; if(key<=node->key)
-{
-cur=insert(node->left,key); node->left=cur;
 }
+void inOrder(struct n*tree)
+{
+if(tree)
+{
+inOrder(tree->l); printf("%c",tree->d); inOrder(tree->r);
+}
+}
+voidpostOrder(struct n*tree)
 
-else
 {
-cur=insert(node->right,key); node->right=cur;
-}
-returnnode;
+if(tree)
+{
+postOrder(tree->l); postOrder(tree->r); printf("%c",tree->d);
 }
 }
 ```
 
 ## Output:
 
-![image](https://github.com/user-attachments/assets/1715b1d3-47d5-4477-8df4-cbb9d321ed5e)
+![image](https://github.com/user-attachments/assets/59360fe8-6c76-476c-ac1f-bce100133776)
 
 ## Result:
-Thus, the C function to insert the elements in the binary search tree is implemented successfully.
+Thus, the C program to display the Expression Tree in the format of In-order ,Pre-order and Post-order traversal.
